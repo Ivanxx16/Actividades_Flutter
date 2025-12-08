@@ -11,6 +11,18 @@ rootProject.layout.buildDirectory.value(newBuildDir)
 subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
+    
+    buildscript {
+        repositories {
+            google()
+            mavenCentral()
+        }
+        configurations.all {
+            resolutionStrategy {
+                force("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
+            }
+        }
+    }
 }
 subprojects {
     project.evaluationDependsOn(":app")
